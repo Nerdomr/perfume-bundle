@@ -1,0 +1,26 @@
+# ---------------------------------------------------------------
+# Shopify Function Extension — Perfume Bundle (Cart Transform)
+# ---------------------------------------------------------------
+
+api_version = "2024-10"
+
+[[extensions]]
+name        = "Perfume Bundle"
+handle      = "perfume-bundle"
+type        = "function"
+
+[extensions.build]
+command          = "cargo build --release --target wasm32-wasip1 --manifest-path Cargo.toml"
+watch_paths      = ["src/**/*.rs"]
+path             = "target/wasm32-wasip1/release/perfume_bundle.wasm"
+
+[extensions.input]
+variables = { singleLine = false }
+
+[[extensions.input.variables]]
+name  = "cart"
+type  = "cart"
+
+[extensions.ui.paths]
+create = "/app/bundle-settings/create"
+details = "/app/bundle-settings/:id"

@@ -1,0 +1,24 @@
+query RunInput {
+  cart {
+    lines {
+      id
+      quantity
+      merchandise {
+        ... on ProductVariant {
+          id
+          title
+          price {
+            amount
+            currencyCode
+          }
+          product {
+            id
+            title
+            tags
+            inAnyCollection: inCollection(id: "gid://shopify/Collection/PERFUMES_COLLECTION_ID")
+          }
+        }
+      }
+    }
+  }
+}
